@@ -8,4 +8,9 @@
     </style>
 
     <style name="Theme.Tarefas" parent="Base.Theme.Tarefas" />
+    
+    <style name="CustomTabLayout" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>
