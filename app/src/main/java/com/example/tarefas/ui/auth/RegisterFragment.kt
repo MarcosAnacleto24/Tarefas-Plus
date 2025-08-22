@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.example.tarefas.R
 import com.example.tarefas.databinding.FragmentLoginBinding
 import com.example.tarefas.databinding.FragmentRegisterBinding
+import com.example.tarefas.util.initToolbar
 
 
 class RegisterFragment : Fragment() {
@@ -21,6 +22,12 @@ class RegisterFragment : Fragment() {
     ): View {
         _binding = FragmentRegisterBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        initToolbar(binding.toolbar)
     }
 
     override fun onDestroyView() {

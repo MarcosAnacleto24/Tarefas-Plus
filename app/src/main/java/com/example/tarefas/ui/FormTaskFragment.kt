@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.tarefas.R
 import com.example.tarefas.databinding.FragmentFormTaskBinding
+import com.example.tarefas.util.initToolbar
 
 
 class FormTaskFragment : Fragment() {
@@ -24,6 +25,8 @@ class FormTaskFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        initToolbar(binding.toolbar)
     }
 
 
