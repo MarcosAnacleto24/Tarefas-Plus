@@ -72,6 +72,8 @@
                 android:layout_marginTop="4dp"
                 android:background="@drawable/bg_edit_text"
                 android:padding="12dp"
+                android:textColor="@color/black"
+                android:textColorHint="#9F9F9F"
                 android:hint="Digite seu e-mail"
                 android:inputType="textEmailAddress"/>
 

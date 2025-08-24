@@ -60,6 +60,8 @@
                 android:background="@drawable/bg_edit_text"
                 android:padding="12dp"
                 android:hint="Criar nova tela de login"
+                android:textColor="@color/black"
+                android:textColorHint="#9F9F9F"
                 android:inputType="textEmailAddress"/>
 
             <TextView
