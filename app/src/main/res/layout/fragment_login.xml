@@ -28,10 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:background="@drawable/bg_edit_text"
-            android:padding="12dp"
-            android:textColor="@color/black"
-            android:textColorHint="#9F9F9F"
+            style="@style/EditTextTheme"
             android:hint="Digite seu e-mail"
             android:inputType="textEmailAddress"/>
 
@@ -47,10 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:background="@drawable/bg_edit_text"
-            android:padding="12dp"
-            android:textColor="@color/black"
-            android:textColorHint="#9F9F9F"
+            style="@style/EditTextTheme"
             android:hint="Digite sua senha"
             android:inputType="textPassword"/>
 
@@ -59,11 +53,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
-            android:background="@drawable/bg_btn_text"
-            app:backgroundTint="@null"
-            android:textColor="@color/color_default"
-            android:text="Login"
-            android:textAllCaps="true"/>
+            style="@style/ButtonTheme"
+            android:text="Login"/>
 
         <LinearLayout
             android:layout_width="match_parent"

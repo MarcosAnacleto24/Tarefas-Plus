@@ -57,11 +57,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:background="@drawable/bg_edit_text"
-                android:padding="12dp"
+                style="@style/EditTextTheme"
                 android:hint="Criar nova tela de login"
-                android:textColor="@color/black"
-                android:textColorHint="#9F9F9F"
                 android:inputType="textEmailAddress"/>
 
             <TextView
@@ -111,11 +108,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
-                android:background="@drawable/bg_btn_text"
-                app:backgroundTint="@null"
-                android:textColor="@color/color_default"
-                android:text="Salvar"
-                android:textAllCaps="false"/>
+                style="@style/ButtonTheme"
+                android:text="Salvar"/>
 
             <ProgressBar
                 android:id="@+id/progressBar"

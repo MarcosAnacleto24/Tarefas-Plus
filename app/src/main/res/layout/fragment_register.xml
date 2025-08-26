@@ -65,12 +65,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:background="@drawable/bg_edit_text"
+                style="@style/EditTextTheme"
                 android:hint="Digite seu e-mail"
-                android:textColor="@color/black"
-                android:textColorHint="#9F9F9F"
-                android:inputType="textEmailAddress"
-                android:padding="12dp" />
+                android:inputType="textEmailAddress"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -84,23 +81,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:background="@drawable/bg_edit_text"
+                style="@style/EditTextTheme"
                 android:hint="Digite sua senha"
-                android:textColor="@color/black"
-                android:textColorHint="#9F9F9F"
-                android:inputType="textPassword"
-                android:padding="12dp" />
+                android:inputType="textPassword"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnRegister"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
-                android:background="@drawable/bg_btn_text"
-                android:text="Criar conta"
-                android:textAllCaps="true"
-                android:textColor="@color/color_default"
-                app:backgroundTint="@null" />
+                style="@style/ButtonTheme"
+                android:text="Criar conta"/>
 
 
             <ProgressBar
