@@ -5,6 +5,17 @@
     <string name="status_task_todo">A Fazer</string>
     <string name="status_task_doing">Fazendo</string>
     <string name="status_task_done">Feitas</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    
+    <!--   Generic-->
+    <string name="txt_title_warning">Atenção</string>
+    <string name="btn_title_warning">Entendi</string>
+    <string name="email_empty">Preencha seu e-mail</string>
+    <string name="password_empty">Preencha sua senha</string>
+
+    <!--    Fragment Register-->
+    <string name="txt_register_email">Preencha um e-mail válido</string>
+    <string name="txt_register_password">Preencha uma senha</string>
+
+    <!--    Fragment FormTask-->
+    <string name="txt_description">Preencha uma descrição</string>
 </resources>

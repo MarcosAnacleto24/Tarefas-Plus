@@ -10,6 +10,7 @@ import com.example.tarefas.R
 import com.example.tarefas.databinding.FragmentRecoverAccountBinding
 import com.example.tarefas.databinding.FragmentRegisterBinding
 import com.example.tarefas.util.initToolbar
+import com.example.tarefas.util.showBottomSheet
 
 
 class RecoverAccountFragment : Fragment() {
@@ -44,7 +45,7 @@ class RecoverAccountFragment : Fragment() {
         if (email.isNotEmpty()){
             Toast.makeText(requireContext(), "Tudo certo", Toast.LENGTH_SHORT).show()
         } else {
-            Toast.makeText(requireContext(), "Preencha seu e-mail", Toast.LENGTH_SHORT).show()
+            showBottomSheet(message = getString(R.string.email_empty))
         }
     }
 

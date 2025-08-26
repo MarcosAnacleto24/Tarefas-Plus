@@ -9,6 +9,7 @@ import android.widget.Toast
 import com.example.tarefas.R
 import com.example.tarefas.databinding.FragmentFormTaskBinding
 import com.example.tarefas.util.initToolbar
+import com.example.tarefas.util.showBottomSheet
 
 
 class FormTaskFragment : Fragment() {
@@ -43,7 +44,7 @@ class FormTaskFragment : Fragment() {
         if (description.isNotEmpty()) {
             Toast.makeText(requireContext(), "Tudo certo", Toast.LENGTH_SHORT).show()
         } else {
-            Toast.makeText(requireContext(), "Preencha uma descrição", Toast.LENGTH_SHORT).show()
+            showBottomSheet(message = getString(R.string.txt_description))
         }
     }
 

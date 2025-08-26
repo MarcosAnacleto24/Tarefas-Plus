@@ -10,6 +10,7 @@ import com.example.tarefas.R
 import com.example.tarefas.databinding.FragmentLoginBinding
 import com.example.tarefas.databinding.FragmentRegisterBinding
 import com.example.tarefas.util.initToolbar
+import com.example.tarefas.util.showBottomSheet
 
 
 class RegisterFragment : Fragment() {
@@ -45,10 +46,10 @@ class RegisterFragment : Fragment() {
             if (password.isNotEmpty()) {
                 Toast.makeText(requireContext(), "Tudo certo", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(requireContext(), "Preencha uma senha", Toast.LENGTH_SHORT).show()
+                showBottomSheet(message = getString(R.string.txt_register_password))
             }
         } else {
-            Toast.makeText(requireContext(), "Preencha um e-mail válido", Toast.LENGTH_SHORT).show()
+            showBottomSheet(message = getString(R.string.txt_register_email))
         }
     }
 
