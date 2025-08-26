@@ -10,12 +10,33 @@
     <string name="txt_title_warning">Atenção</string>
     <string name="btn_title_warning">Entendi</string>
     <string name="email_empty">Preencha seu e-mail</string>
+    <string name="email_text">E-mail</string>
+    <string name="password_text">Senha</string>
     <string name="password_empty">Preencha sua senha</string>
+    <string name="hint_edit_email">Digite seu e-mail</string>
+    <string name="hint_edit_password">Digite sua senha</string>
 
-    <!--    Fragment Register-->
+    <!--    Login Fragment-->
+    <string name="txt_btn_login">Login</string>
+    <string name="txt_register_login">Criar Conta</string>
+    <string name="txt_recover_login">Recuperar Conta</string>
+
+    <!--    Register Fragment -->
     <string name="txt_register_email">Preencha um e-mail válido</string>
     <string name="txt_register_password">Preencha uma senha</string>
+    <string name="btn_register_title">Criar conta</string>
+    <string name="txt_register_toolbar">Criar conta</string>
 
-    <!--    Fragment FormTask-->
+    <!--    Recover Account Fragment-->
+    <string name="txt_info">Informe seu e-mail de cadastro para recuperar sua conta</string>
+    <string name="txt_title_toolbar">Recuperar conta</string>
+    <string name="txt_btn_recover">Recuperar conta</string>
+
+    <!--    Form Task Fragment -->
     <string name="txt_description">Preencha uma descrição</string>
+    <string name="hint_description">Criar nova tela de login</string>
+    <string name="txt_description_title">Descrição</string>
+    <string name="txt_status_description">Status</string>
+    <string name="txt_btn_description">Salvar</string>
+
 </resources>

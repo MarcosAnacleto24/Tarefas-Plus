@@ -26,7 +26,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Recuperar Conta"
+                    android:text="@string/txt_title_toolbar"
                     android:layout_gravity="center_horizontal"
                     android:textColor="@color/white"/>
 
@@ -53,7 +53,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Informe seu e-mail de cadastro para recuperar sua conta"
+                android:text="@string/txt_info"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="16dp"
                 android:textAlignment="center"
@@ -62,7 +62,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="E-mail"
+                android:text="@string/email_text"
                 android:textColor="@color/white"/>
 
             <EditText
@@ -71,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 style="@style/EditTextTheme"
-                android:hint="Digite seu e-mail"
+                android:hint="@string/hint_edit_email"
                 android:inputType="textEmailAddress"/>
 
 
@@ -81,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
                 style="@style/ButtonTheme"
-                android:text="Recuperar conta"/>
+                android:text="@string/txt_btn_recover"/>
 
 
             <ProgressBar

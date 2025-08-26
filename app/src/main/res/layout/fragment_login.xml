@@ -20,7 +20,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="E-mail"
+            android:text="@string/email_text"
             android:textColor="@color/white"/>
 
         <EditText
@@ -29,14 +29,14 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             style="@style/EditTextTheme"
-            android:hint="Digite seu e-mail"
+            android:hint="@string/hint_edit_email"
             android:inputType="textEmailAddress"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
-            android:text="Senha"
+            android:text="@string/password_text"
             android:textColor="@color/white"/>
 
         <EditText
@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             style="@style/EditTextTheme"
-            android:hint="Digite sua senha"
+            android:hint="@string/hint_edit_password"
             android:inputType="textPassword"/>
 
         <com.google.android.material.button.MaterialButton
@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
             style="@style/ButtonTheme"
-            android:text="Login"/>
+            android:text="@string/txt_btn_login"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -67,7 +67,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Criar conta"
+                android:text="@string/txt_register_login"
                 android:textColor="@color/white"/>
 
             <TextView
@@ -76,7 +76,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="textEnd"
-                android:text="Recuperar conta"
+                android:text="@string/txt_recover_login"
                 android:textColor="@color/white"/>
 
         </LinearLayout>
