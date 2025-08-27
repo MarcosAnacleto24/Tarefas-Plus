@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fillViewport="true"
+    android:fitsSystemWindows="true"
     tools:context=".ui.FormTaskFragment">
 
     <LinearLayout
@@ -26,7 +27,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Ceiar Tarefa"
+                    android:text="@string/title_description"
                     android:textColor="@color/white"
                     android:layout_gravity="center_horizontal"/>
 

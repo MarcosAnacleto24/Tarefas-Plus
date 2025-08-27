@@ -35,6 +35,7 @@
     <!--    Form Task Fragment -->
     <string name="txt_description">Preencha uma descrição</string>
     <string name="hint_description">Criar nova tela de login</string>
+    <string name="title_description">Criar Tarefa</string>
     <string name="txt_description_title">Descrição</string>
     <string name="txt_status_description">Status</string>
     <string name="txt_btn_description">Salvar</string>

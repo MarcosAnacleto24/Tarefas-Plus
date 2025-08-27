@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="color_default">#153D2C</color>
+    <color name="color_delete">#EF1729</color>
+    <color name="color_details">#03A9F4</color>
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
