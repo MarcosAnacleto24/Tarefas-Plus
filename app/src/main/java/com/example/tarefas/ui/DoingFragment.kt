@@ -38,7 +38,7 @@ class DoingFragment : Fragment() {
     }
 
     private fun initRecycleView(tasList: List<Task>) {
-        taskAdapter = TaskAdapter(tasList)
+        taskAdapter = TaskAdapter(requireContext(),tasList)
 
         binding.rvTask.layoutManager = LinearLayoutManager(requireContext())
         binding.rvTask.setHasFixedSize(true)

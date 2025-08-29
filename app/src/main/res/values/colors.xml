@@ -4,6 +4,8 @@
     <color name="color_delete">#EF1729</color>
     <color name="color_details">#03A9F4</color>
 
+    <color name="color_back">#FF841A</color>
+
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 </resources>
