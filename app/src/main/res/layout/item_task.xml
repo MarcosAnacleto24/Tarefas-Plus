@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
@@ -52,7 +52,9 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnDelete"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
+                android:layout_height="30dp"
+                android:padding="0dp"
+                android:textSize="11sp"
                 android:background="@drawable/bg_btn_text"
                 android:text="Remover"
                 app:backgroundTint="@color/color_delete"
@@ -66,7 +68,9 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnEdit"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
+                android:layout_height="30dp"
+                android:padding="0dp"
+                android:textSize="11sp"
                 android:layout_marginHorizontal="8dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="16dp"
@@ -83,7 +87,9 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnDetails"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
+                android:layout_height="30dp"
+                android:padding="0dp"
+                android:textSize="11sp"
                 android:background="@drawable/bg_btn_text"
                 android:text="Detalhes"
                 android:textAllCaps="false"

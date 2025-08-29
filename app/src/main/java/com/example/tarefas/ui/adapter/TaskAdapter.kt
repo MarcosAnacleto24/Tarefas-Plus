@@ -15,7 +15,8 @@ class TaskAdapter(
         return MyViewHolder(ItemTaskBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
-            false))
+            false
+        ))
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
