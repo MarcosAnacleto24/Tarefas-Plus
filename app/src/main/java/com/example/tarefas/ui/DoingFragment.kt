@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import com.example.tarefas.R
@@ -38,11 +39,39 @@ class DoingFragment : Fragment() {
     }
 
     private fun initRecycleView(tasList: List<Task>) {
-        taskAdapter = TaskAdapter(requireContext(),tasList)
+        taskAdapter = TaskAdapter(requireContext(),tasList) {task, option ->
+            optionSelect(task, option)
+        }
 
         binding.rvTask.layoutManager = LinearLayoutManager(requireContext())
         binding.rvTask.setHasFixedSize(true)
         binding.rvTask.adapter = taskAdapter
+    }
+
+    private fun optionSelect(task: Task, option: Int) {
+        when(option) {
+
+            TaskAdapter.SELECT_BACK -> {
+                Toast.makeText(requireContext(), "Back ${task.description}", Toast.LENGTH_SHORT).show()
+            }
+
+            TaskAdapter.SELECT_REMOVER -> {
+                Toast.makeText(requireContext(), "Removendo ${task.description}", Toast.LENGTH_SHORT).show()
+            }
+
+            TaskAdapter.SELECT_EDIT -> {
+                Toast.makeText(requireContext(), "Editando ${task.description}", Toast.LENGTH_SHORT).show()
+            }
+
+            TaskAdapter.SELECT_DETAILS -> {
+                Toast.makeText(requireContext(), "Detalhes ${task.description}", Toast.LENGTH_SHORT).show()
+            }
+
+            TaskAdapter.SELECT_NEXT -> {
+                Toast.makeText(requireContext(), "Next ${task.description}", Toast.LENGTH_SHORT).show()
+            }
+
+        }
     }
 
     private fun getTasks() = listOf(
