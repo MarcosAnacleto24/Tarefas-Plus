@@ -33,17 +33,21 @@ class DoneFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initRecyclerView(getTasks())
+        initRecyclerView()
+        getTasks()
     }
 
-    private fun initRecyclerView(taskList: List<Task>) {
-        taskAdapter = TaskAdapter(requireContext(),taskList) {task, option ->
+    private fun initRecyclerView() {
+        taskAdapter = TaskAdapter(requireContext()) {task, option ->
             optionSelect(task, option)
         }
 
-        binding.rvTask.layoutManager = LinearLayoutManager(requireContext())
-        binding.rvTask.setHasFixedSize(true)
-        binding.rvTask.adapter = taskAdapter
+        with(binding.rvTask) {
+            layoutManager = LinearLayoutManager(requireContext())
+            setHasFixedSize(true)
+            adapter = taskAdapter
+        }
+
     }
 
     private fun optionSelect(task: Task, option: Int) {
@@ -70,14 +74,18 @@ class DoneFragment : Fragment() {
         }
     }
 
-    private fun getTasks() = listOf(
-        Task("0", "Criar nova tela", Status.DONE),
-        Task("1", "correr",Status.DONE),
-        Task("2", "estudar de manhã",Status.DONE),
-        Task("3", "jogar boa",Status.DONE),
-        Task("4", "estudar a tarde",Status.DONE),
-        Task("5", "estudar a tarde",Status.DONE)
-    )
+    private fun getTasks() {
+        val taskList = listOf(
+            Task("0", "Criar nova tela", Status.DONE),
+            Task("1", "correr",Status.DONE),
+            Task("2", "estudar de manhã",Status.DONE),
+            Task("3", "jogar boa",Status.DONE),
+            Task("4", "estudar a tarde",Status.DONE),
+            Task("5", "estudar a tarde",Status.DONE)
+        )
+
+        taskAdapter.submitList(taskList)
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
