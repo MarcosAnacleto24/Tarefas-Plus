@@ -12,6 +12,7 @@ import com.example.tarefas.databinding.FragmentLoginBinding
 import com.example.tarefas.util.showBottomSheet
 
 
+
 class LoginFragment : Fragment() {
 
     private var _binding: FragmentLoginBinding? = null
@@ -30,6 +31,7 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initListeners()
+
     }
 
     private fun initListeners() {

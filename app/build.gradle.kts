@@ -55,6 +55,7 @@ dependencies {
     //Navigation
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.firebase.common.ktx)
 
     //Test
     testImplementation(libs.junit)
@@ -63,4 +64,6 @@ dependencies {
 
     //Firebase
     implementation(platform(libs.firebase.bom))
+    implementation(libs.google.firebase.auth.ktx)
+
 }
