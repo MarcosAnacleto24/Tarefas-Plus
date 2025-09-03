@@ -31,6 +31,7 @@
     <string name="txt_info">Informe seu e-mail de cadastro para recuperar sua conta</string>
     <string name="txt_title_toolbar">Recuperar conta</string>
     <string name="txt_btn_recover">Recuperar conta</string>
+    <string name="title_message_recoverAccount">Acabamos de enviar um link de recuperação para seu e-mail.</string>
 
     <!--    Home Fragment-->
     <string name="title_dialog">Tem certeza que deseja deslogar?</string>
