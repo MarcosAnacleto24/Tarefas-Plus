@@ -32,6 +32,11 @@
     <string name="txt_title_toolbar">Recuperar conta</string>
     <string name="txt_btn_recover">Recuperar conta</string>
 
+    <!--    Home Fragment-->
+    <string name="title_dialog">Tem certeza que deseja deslogar?</string>
+    <string name="title_button">Confirmar</string>
+    <string name="title_message">Aperte em confirmar para deslogar</string>
+
     <!--    Form Task Fragment -->
     <string name="txt_description">Preencha uma descrição</string>
     <string name="hint_description">Criar nova tela de login</string>
