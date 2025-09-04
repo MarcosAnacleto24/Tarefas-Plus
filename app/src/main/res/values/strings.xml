@@ -15,6 +15,7 @@
     <string name="password_empty">Preencha sua senha</string>
     <string name="hint_edit_email">Digite seu e-mail</string>
     <string name="hint_edit_password">Digite sua senha</string>
+    <string name="save_success">Salvo com sucesso</string>
 
     <!--    Login Fragment-->
     <string name="txt_btn_login">Login</string>
@@ -45,5 +46,6 @@
     <string name="txt_description_title">Descrição</string>
     <string name="txt_status_description">Status</string>
     <string name="txt_btn_description">Salvar</string>
+    <string name="error_save">Erro! tente novamente mais tarde</string>
 
 </resources>

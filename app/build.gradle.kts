@@ -65,5 +65,6 @@ dependencies {
     //Firebase
     implementation(platform(libs.firebase.bom))
     implementation(libs.google.firebase.auth.ktx)
+    implementation(libs.firebase.database)
 
 }
