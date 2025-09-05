@@ -13,6 +13,11 @@ import com.example.tarefas.data.model.Status
 import com.example.tarefas.data.model.Task
 import com.example.tarefas.databinding.FragmentDoingBinding
 import com.example.tarefas.ui.adapter.TaskAdapter
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.database
 
 
 class DoingFragment : Fragment() {
@@ -78,16 +83,13 @@ class DoingFragment : Fragment() {
     }
 
     private fun getTasks(){
-       val taskList = listOf(
-           Task("0", "Criar nova tela", Status.DOING),
-           Task("1", "correr",Status.DOING),
-           Task("2", "estudar de manhã",Status.DOING),
-           Task("3", "jogar boa",Status.DOING),
-           Task("4", "estudar a tarde",Status.DOING),
-           Task("5", "estudar a tarde",Status.DOING)
+        val taskList = listOf(
+            Task("0", "criar tela", Status.DOING),
+            Task("1", "criar tela", Status.DOING),
+            Task("2", "criar tela", Status.DOING),
         )
-
         taskAdapter.submitList(taskList)
+
     }
 
     override fun onDestroyView() {

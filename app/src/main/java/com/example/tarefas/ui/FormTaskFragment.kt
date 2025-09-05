@@ -58,7 +58,7 @@ class FormTaskFragment : Fragment() {
 
         binding.rbStatus.setOnCheckedChangeListener { _, id ->
             when(id) {
-                R.id.rbStatus -> Status.TODO
+                R.id.rbTodo -> Status.TODO
                 R.id.rbDoing -> Status.DOING
                 else -> Status.DONE
             }

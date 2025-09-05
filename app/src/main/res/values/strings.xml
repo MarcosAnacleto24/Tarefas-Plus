@@ -27,6 +27,9 @@
     <string name="txt_register_password">Preencha uma senha</string>
     <string name="btn_register_title">Criar conta</string>
     <string name="txt_register_toolbar">Criar conta</string>
+    <string name="txt_register_password_repeat">Repita a senha</string>
+    <string name="txt_register_password_repeat_empty">Campo repita senha não preenchido</string>
+    <string name="txt_register_password_repeat_error">Senhas estão diferentes, Corrija!</string>
 
     <!--    Recover Account Fragment-->
     <string name="txt_info">Informe seu e-mail de cadastro para recuperar sua conta</string>

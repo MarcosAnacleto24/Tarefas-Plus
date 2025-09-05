@@ -49,13 +49,22 @@ class RegisterFragment : Fragment() {
     private fun validateData() {
         val email = binding.edtEmail.text.toString().trim()
         val password = binding.edtPassword.text.toString().trim()
+        val passwordRepeat = binding.edtPasswordRepeat.text.toString().trim()
         
         if (email.isNotEmpty()) {
             if (password.isNotEmpty()) {
+                if (passwordRepeat.isNotEmpty()) {
+                   if (password == passwordRepeat) {
+                       binding.progressBar.isVisible = true
 
-                binding.progressBar.isVisible = true
+                       registerUser(email, password)
+                   } else {
+                       showBottomSheet(message = getString(R.string.txt_register_password_repeat_error))
+                   }
+                } else {
+                    showBottomSheet(message = getString(R.string.txt_register_password_repeat_empty) )
+                }
 
-                registerUser(email, password)
             } else {
                 showBottomSheet(message = getString(R.string.txt_register_password))
             }
