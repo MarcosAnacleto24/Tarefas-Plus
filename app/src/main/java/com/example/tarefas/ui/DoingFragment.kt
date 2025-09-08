@@ -14,6 +14,7 @@ import com.example.tarefas.data.model.Status
 import com.example.tarefas.data.model.Task
 import com.example.tarefas.databinding.FragmentDoingBinding
 import com.example.tarefas.ui.adapter.TaskAdapter
+import com.example.tarefas.util.showBottomSheet
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
@@ -75,7 +76,12 @@ class DoingFragment : Fragment() {
             }
 
             TaskAdapter.SELECT_REMOVER -> {
-                Toast.makeText(requireContext(), "Removendo ${task.description}", Toast.LENGTH_SHORT).show()
+                showBottomSheet(
+                    titleDialog = R.string.title_task_delete_info,
+                    titleButton = R.string.title_button,
+                    message = getString(R.string.title_task_delete_confirm),
+                    onClick = {deleteTask(task)}
+                )
             }
 
             TaskAdapter.SELECT_EDIT -> {
@@ -109,6 +115,8 @@ class DoingFragment : Fragment() {
                    }
 
                    listEmpty(taskList)
+
+                   taskList.reverse()
                    taskAdapter.submitList(taskList)
                }
 
@@ -126,6 +134,20 @@ class DoingFragment : Fragment() {
         } else {
             ""
         }
+    }
+
+    private fun deleteTask(task: Task) {
+        reference
+            .child("tasks")
+            .child(auth.currentUser?.uid ?: "")
+            .child(task.id)
+            .removeValue().addOnCompleteListener { result ->
+                if (result.isSuccessful) {
+                    Toast.makeText(requireContext(), R.string.task_delete_success, Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(requireContext(), R.string.error_save, Toast.LENGTH_SHORT).show()
+                }
+            }
     }
 
     override fun onDestroyView() {

@@ -18,6 +18,10 @@
     <string name="save_success">Salvo com sucesso</string>
     <string name="txt_list_task_empty">Nenhuma tarefa cadastrada</string>
     <string name="txt_list_task_load">Aguarde, carregando informações</string>
+    <string name="task_delete_success">Tarefa deletada com sucesso</string>
+    <string name="title_button">Confirmar</string>
+    <string name="title_task_delete_info">Tem certeza de que deseja deletar esta tarefa?</string>
+    <string name="title_task_delete_confirm">Aperte em confirmar para deletar a tarefa!</string>
 
     <!--    Login Fragment-->
     <string name="txt_btn_login">Login</string>
@@ -30,7 +34,7 @@
     <string name="btn_register_title">Criar conta</string>
     <string name="txt_register_toolbar">Criar conta</string>
     <string name="txt_register_password_repeat">Repita a senha</string>
-    <string name="txt_register_password_repeat_empty">Campo repita senha não preenchido</string>
+    <string name="txt_register_password_repeat_empty">Campo repita a senha não preenchido</string>
     <string name="txt_register_password_repeat_error">Senhas estão diferentes, Corrija!</string>
 
     <!--    Recover Account Fragment-->
@@ -41,7 +45,6 @@
 
     <!--    Home Fragment-->
     <string name="title_dialog">Tem certeza que deseja deslogar?</string>
-    <string name="title_button">Confirmar</string>
     <string name="title_message">Aperte em confirmar para deslogar</string>
 
     <!--    Form Task Fragment -->
