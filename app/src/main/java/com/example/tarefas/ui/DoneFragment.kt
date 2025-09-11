@@ -1,7 +1,6 @@
 package com.example.tarefas.ui
 
 import android.os.Bundle
-import android.renderscript.Sampler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,14 +16,9 @@ import com.example.tarefas.data.model.Task
 import com.example.tarefas.databinding.FragmentDoneBinding
 import com.example.tarefas.ui.adapter.TaskAdapter
 import com.example.tarefas.util.showBottomSheet
-import com.google.firebase.Firebase
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.database
 
 
 class DoneFragment : Fragment() {
@@ -94,7 +88,8 @@ class DoneFragment : Fragment() {
         when(option) {
 
             TaskAdapter.SELECT_BACK -> {
-                Toast.makeText(requireContext(), "Back ${task.description}", Toast.LENGTH_SHORT).show()
+                task.status = Status.DOING
+                updateTask(task)
             }
 
             TaskAdapter.SELECT_REMOVER -> {
@@ -115,8 +110,6 @@ class DoneFragment : Fragment() {
             TaskAdapter.SELECT_DETAILS -> {
                 Toast.makeText(requireContext(), "Detalhes ${task.description}", Toast.LENGTH_SHORT).show()
             }
-
-
 
         }
     }
@@ -166,6 +159,20 @@ class DoneFragment : Fragment() {
             .removeValue().addOnCompleteListener { result ->
                 if (result.isSuccessful) {
                     Toast.makeText(requireContext(), R.string.task_delete_success, Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(requireContext(), R.string.error_save, Toast.LENGTH_SHORT).show()
+                }
+            }
+    }
+
+    private fun updateTask(task: Task) {
+        FirebaseHelper.getDatabase()
+            .child("tasks")
+            .child(FirebaseHelper.getIdUser())
+            .child(task.id)
+            .setValue(task).addOnCompleteListener { result ->
+                if (result.isSuccessful) {
+                    Toast.makeText(requireContext(), R.string.update_task, Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(requireContext(), R.string.error_save, Toast.LENGTH_SHORT).show()
                 }

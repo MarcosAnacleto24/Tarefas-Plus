@@ -5,23 +5,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
 import com.example.tarefas.R
 import com.example.tarefas.databinding.FragmentRecoverAccountBinding
 import com.example.tarefas.ui.FirebaseHelper
 import com.example.tarefas.util.initToolbar
 import com.example.tarefas.util.showBottomSheet
-import com.google.firebase.Firebase
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.auth
 
 
 class RecoverAccountFragment : Fragment() {
 
     private var _binding: FragmentRecoverAccountBinding? = null
     private val binding get() = _binding!!
-    private lateinit var auth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,7 +29,7 @@ class RecoverAccountFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        auth = Firebase.auth
+        FirebaseHelper.getAuth()
 
         initToolbar(binding.toolbar)
         initListeners()
@@ -60,7 +55,7 @@ class RecoverAccountFragment : Fragment() {
     }
 
     private fun recoverAccountUser(email: String) {
-        Firebase.auth.sendPasswordResetEmail(email)
+        FirebaseHelper.getAuth().sendPasswordResetEmail(email)
             .addOnCompleteListener { task ->
                 binding.progressBar.isVisible = false
 

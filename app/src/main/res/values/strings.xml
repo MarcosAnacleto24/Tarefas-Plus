@@ -63,5 +63,6 @@
     <string name="txt_btn_description">Salvar</string>
     <string name="error_save">Erro! tente novamente mais tarde</string>
     <string name="edit_task">Editando tarefa</string>
+    <string name="update_task">Tarefa atualizada com sucesso</string>
 
 </resources>

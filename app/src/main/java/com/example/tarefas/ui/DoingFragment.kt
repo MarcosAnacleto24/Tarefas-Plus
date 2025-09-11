@@ -10,21 +10,15 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.ListAdapter
 import com.example.tarefas.R
 import com.example.tarefas.data.model.Status
 import com.example.tarefas.data.model.Task
 import com.example.tarefas.databinding.FragmentDoingBinding
 import com.example.tarefas.ui.adapter.TaskAdapter
 import com.example.tarefas.util.showBottomSheet
-import com.google.firebase.Firebase
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.database
 
 
 class DoingFragment : Fragment() {
@@ -95,7 +89,8 @@ class DoingFragment : Fragment() {
         when(option) {
 
             TaskAdapter.SELECT_BACK -> {
-                Toast.makeText(requireContext(), "Back ${task.description}", Toast.LENGTH_SHORT).show()
+                task.status = Status.TODO
+                updateTask(task)
             }
 
             TaskAdapter.SELECT_REMOVER -> {
@@ -118,7 +113,8 @@ class DoingFragment : Fragment() {
             }
 
             TaskAdapter.SELECT_NEXT -> {
-                Toast.makeText(requireContext(), "Next ${task.description}", Toast.LENGTH_SHORT).show()
+                task.status = Status.DONE
+                updateTask(task)
             }
 
         }
@@ -169,6 +165,20 @@ class DoingFragment : Fragment() {
             .removeValue().addOnCompleteListener { result ->
                 if (result.isSuccessful) {
                     Toast.makeText(requireContext(), R.string.task_delete_success, Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(requireContext(), R.string.error_save, Toast.LENGTH_SHORT).show()
+                }
+            }
+    }
+
+    private fun updateTask(task: Task) {
+        FirebaseHelper.getDatabase()
+            .child("tasks")
+            .child(FirebaseHelper.getIdUser())
+            .child(task.id)
+            .setValue(task).addOnCompleteListener { result ->
+                if (result.isSuccessful) {
+                    Toast.makeText(requireContext(), R.string.update_task, Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(requireContext(), R.string.error_save, Toast.LENGTH_SHORT).show()
                 }

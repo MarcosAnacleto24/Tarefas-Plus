@@ -16,14 +16,9 @@ import com.example.tarefas.data.model.Task
 import com.example.tarefas.databinding.FragmentTodoBinding
 import com.example.tarefas.ui.adapter.TaskAdapter
 import com.example.tarefas.util.showBottomSheet
-import com.google.firebase.Firebase
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.database
 
 
 class TodoFragment : Fragment() {
@@ -33,8 +28,6 @@ class TodoFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var taskAdapter: TaskAdapter
-
-
 
     private val viewModel: TaskViewModel by activityViewModels()
 
@@ -49,8 +42,6 @@ class TodoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
 
         initListeners()
         initRecyclerView()
@@ -127,7 +118,8 @@ class TodoFragment : Fragment() {
             }
 
             TaskAdapter.SELECT_NEXT -> {
-                Toast.makeText(requireContext(), "Next ${task.description}", Toast.LENGTH_SHORT).show()
+                task.status = Status.DOING
+                updateTask(task)
             }
 
         }
@@ -181,6 +173,20 @@ class TodoFragment : Fragment() {
             .removeValue().addOnCompleteListener { result ->
                 if (result.isSuccessful) {
                     Toast.makeText(requireContext(), R.string.task_delete_success, Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(requireContext(), R.string.error_save, Toast.LENGTH_SHORT).show()
+                }
+            }
+    }
+
+    private fun updateTask(task: Task) {
+        FirebaseHelper.getDatabase()
+            .child("tasks")
+            .child(FirebaseHelper.getIdUser())
+            .child(task.id)
+            .setValue(task).addOnCompleteListener { result ->
+                if (result.isSuccessful) {
+                    Toast.makeText(requireContext(), R.string.update_task, Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(requireContext(), R.string.error_save, Toast.LENGTH_SHORT).show()
                 }

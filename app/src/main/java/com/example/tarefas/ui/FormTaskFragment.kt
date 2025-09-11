@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.tarefas.R
@@ -17,11 +16,6 @@ import com.example.tarefas.data.model.Task
 import com.example.tarefas.databinding.FragmentFormTaskBinding
 import com.example.tarefas.util.initToolbar
 import com.example.tarefas.util.showBottomSheet
-import com.google.firebase.Firebase
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.auth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.database
 
 
 class FormTaskFragment : Fragment() {
