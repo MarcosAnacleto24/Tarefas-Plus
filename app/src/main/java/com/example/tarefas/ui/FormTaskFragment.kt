@@ -35,8 +35,6 @@ class FormTaskFragment : Fragment() {
 
     private val viewModel: TaskViewModel by activityViewModels ()
     private var status: Status = Status.TODO
-    private lateinit var reference: DatabaseReference
-    private lateinit var auth: FirebaseAuth
 
 
     override fun onCreateView(
@@ -49,9 +47,6 @@ class FormTaskFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        auth = Firebase.auth
-        reference = Firebase.database.reference
 
         initToolbar(binding.toolbar)
         getArgsConfigure()
@@ -105,10 +100,7 @@ class FormTaskFragment : Fragment() {
         if (description.isNotEmpty()) {
             binding.progressBar.isVisible = true
 
-            if (newTask) {
-                task = Task()
-                task.id = reference.database.reference.push().key?: ""
-            }
+            if (newTask) task = Task()
             task.description = description
             task.status = status
             saveTask()
@@ -118,9 +110,9 @@ class FormTaskFragment : Fragment() {
     }
 
     private fun saveTask() {
-        reference
+        FirebaseHelper.getDatabase()
             .child("tasks")
-            .child(auth.currentUser?.uid ?: "")
+            .child(FirebaseHelper.getIdUser())
             .child(task.id)
             .setValue(task).addOnCompleteListener { result ->
                 if (result.isSuccessful) {

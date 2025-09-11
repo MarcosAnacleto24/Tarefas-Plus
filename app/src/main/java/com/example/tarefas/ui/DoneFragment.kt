@@ -34,9 +34,6 @@ class DoneFragment : Fragment() {
 
     private lateinit var taskAdapter: TaskAdapter
 
-    private lateinit var reference: DatabaseReference
-    private lateinit var auth: FirebaseAuth
-
     private val viewModel: TaskViewModel by activityViewModels()
 
 
@@ -50,9 +47,6 @@ class DoneFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        auth = Firebase.auth
-        reference = Firebase.database.reference
 
         observeViewModel()
         initRecyclerView()
@@ -128,9 +122,9 @@ class DoneFragment : Fragment() {
     }
 
     private fun getTasks() {
-        reference
+        FirebaseHelper.getDatabase()
             .child("tasks")
-            .child(auth.currentUser?.uid ?: "")
+            .child(FirebaseHelper.getIdUser())
             .addValueEventListener(object : ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val taskList = mutableListOf<Task>()
@@ -165,9 +159,9 @@ class DoneFragment : Fragment() {
     }
 
     private fun deleteTask(task: Task) {
-        reference
+        FirebaseHelper.getDatabase()
             .child("tasks")
-            .child(auth.currentUser?.uid ?: "")
+            .child(FirebaseHelper.getIdUser())
             .child(task.id)
             .removeValue().addOnCompleteListener { result ->
                 if (result.isSuccessful) {

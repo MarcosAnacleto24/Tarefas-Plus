@@ -37,6 +37,13 @@
     <string name="txt_register_password_repeat_empty">Campo repita a senha não preenchido</string>
     <string name="txt_register_password_repeat_error">Senhas estão diferentes, Corrija!</string>
 
+    <!--    Error Firebase Authentication-->
+    <string name="account_not_register">Nenhuma conta encontra com este e-mail. </string>
+    <string name="email_invalid_">Insira um e-mail válido. </string>
+    <string name="password_invalid_">Senha inválida, tente novamente. </string>
+    <string name="this_email_used">Este e-mail já está em uso. </string>
+    <string name="enter_password_stronger">Insira uma senha mais forte. </string>
+
     <!--    Recover Account Fragment-->
     <string name="txt_info">Informe seu e-mail de cadastro para recuperar sua conta</string>
     <string name="txt_title_toolbar">Recuperar conta</string>

@@ -10,6 +10,7 @@ import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.example.tarefas.R
 import com.example.tarefas.databinding.FragmentLoginBinding
+import com.example.tarefas.ui.FirebaseHelper
 import com.example.tarefas.util.showBottomSheet
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
@@ -76,7 +77,9 @@ class LoginFragment : Fragment() {
                     findNavController().navigate(R.id.action_global_homeFragment)
                 } else {
                    binding.progressBar.isVisible = false
-                    Toast.makeText(requireContext(), task.exception?.message, Toast.LENGTH_SHORT).show()
+                    showBottomSheet(
+                        message = getString(FirebaseHelper.messageFirebase(task.exception?.message.toString()))
+                    )
                 }
             }
     }
