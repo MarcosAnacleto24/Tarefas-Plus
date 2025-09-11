@@ -7,8 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.tarefas.R
 import com.example.tarefas.data.model.Status
 import com.example.tarefas.data.model.Task
@@ -28,6 +30,10 @@ class FormTaskFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var task: Task
     private var newTask: Boolean = true
+
+    private val args: FormTaskFragmentArgs by navArgs()
+
+    private val viewModel: TaskViewModel by activityViewModels ()
     private var status: Status = Status.TODO
     private lateinit var reference: DatabaseReference
     private lateinit var auth: FirebaseAuth
@@ -48,7 +54,35 @@ class FormTaskFragment : Fragment() {
         reference = Firebase.database.reference
 
         initToolbar(binding.toolbar)
+        getArgsConfigure()
         initListeners()
+    }
+
+    private fun getArgsConfigure() {
+        args.task.let { it ->
+            if (it != null) {
+                this.task = it
+
+                binding.editDescription.setText(task.description)
+                binding.titleToolbar.setText(R.string.edit_task)
+
+                val id = when(task.status) {
+                    Status.TODO -> R.id.rbTodo
+                    Status.DOING -> R.id.rbDoing
+                    else -> R.id.rbDone
+                }
+
+                binding.rbStatus.check(id)
+
+                newTask = false
+                status = task.status
+
+            }
+
+
+        }
+
+
     }
     
     private fun initListeners() {
@@ -71,8 +105,10 @@ class FormTaskFragment : Fragment() {
         if (description.isNotEmpty()) {
             binding.progressBar.isVisible = true
 
-            if (newTask) task = Task()
-            task.id = reference.database.reference.push().key?: ""
+            if (newTask) {
+                task = Task()
+                task.id = reference.database.reference.push().key?: ""
+            }
             task.description = description
             task.status = status
             saveTask()
@@ -93,6 +129,8 @@ class FormTaskFragment : Fragment() {
                     if (newTask) { //Criando nova Tarefa
                         findNavController().popBackStack()
                     } else { // Editando tarefa
+                        viewModel.setUpdateTask(task)
+
                         binding.progressBar.isVisible = false
                     }
 

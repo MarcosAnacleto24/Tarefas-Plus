@@ -55,5 +55,6 @@
     <string name="txt_status_description">Status</string>
     <string name="txt_btn_description">Salvar</string>
     <string name="error_save">Erro! tente novamente mais tarde</string>
+    <string name="edit_task">Editando tarefa</string>
 
 </resources>

@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import com.example.tarefas.R
@@ -36,6 +38,8 @@ class DoingFragment : Fragment() {
     private lateinit var reference: DatabaseReference
     private lateinit var auth: FirebaseAuth
 
+    private val viewModel: TaskViewModel by activityViewModels()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,9 +55,33 @@ class DoingFragment : Fragment() {
         auth = Firebase.auth
         reference = Firebase.database.reference
 
-
+        observeViewModel()
         initRecycleView()
         getTasks()
+    }
+
+    private fun observeViewModel() {
+        viewModel.taskUpdate.observe(viewLifecycleOwner) {updateTask ->
+            if (updateTask.status == Status.DOING) {
+
+                //Armazena a lista atual do adapter
+                val oldList = taskAdapter.currentList
+
+                //Gera uma nova lista a partir da lista antiga já com a tarefa atualizada
+                val newList = oldList.toMutableList().apply {
+                    find { it.id == updateTask.id }?.description = updateTask.description
+                }
+
+                //Armazena a posição da tarefa a ser atualizada na lista
+                val position = newList.indexOfFirst { it.id == updateTask.id }
+
+                //Envia a lista atualizada para o adapter
+                taskAdapter.submitList(newList)
+
+                //atualiza a tarefa pela posição do adapter
+                taskAdapter.notifyItemChanged(position)
+            }
+        }
     }
 
     private fun initRecycleView() {
@@ -85,7 +113,9 @@ class DoingFragment : Fragment() {
             }
 
             TaskAdapter.SELECT_EDIT -> {
-                Toast.makeText(requireContext(), "Editando ${task.description}", Toast.LENGTH_SHORT).show()
+                val action = HomeFragmentDirections
+                    .actionHomeFragmentToFormTaskFragment(task)
+                findNavController().navigate(action)
             }
 
             TaskAdapter.SELECT_DETAILS -> {
