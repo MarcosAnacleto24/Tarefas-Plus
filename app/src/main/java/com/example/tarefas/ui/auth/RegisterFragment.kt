@@ -31,7 +31,6 @@ class RegisterFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initToolbar(binding.toolbar)
-        FirebaseHelper.getAuth()
         initListeners()
 
     }
