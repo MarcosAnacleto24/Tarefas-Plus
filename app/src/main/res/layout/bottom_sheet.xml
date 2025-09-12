@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:textColor="@color/black"
-        tools:text="Mensagem"
+        tools:text="@string/bottom_sheet_message"
         android:textAlignment="center"/>
 
     <com.google.android.material.button.MaterialButton

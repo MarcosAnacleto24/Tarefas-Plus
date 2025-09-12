@@ -65,4 +65,13 @@
     <string name="edit_task">Editando tarefa</string>
     <string name="update_task">Tarefa atualizada com sucesso</string>
 
+    <!--    Bottom Sheet-->
+    <string name="bottom_sheet_message">Mensagem</string>
+
+    <!--    Item Task-->
+    <string name="item_title_task_description">Criar Layout de Login</string>
+    <string name="item_task_delete">Remover</string>
+    <string name="item_task_edit">Editar</string>
+    <string name="item_task_Details">Detalhes</string>
+
 </resources>
