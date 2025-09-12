@@ -1,7 +1,6 @@
 package com.example.tarefas.ui.auth
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,12 +8,13 @@ import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.example.tarefas.R
 import com.example.tarefas.databinding.FragmentRegisterBinding
+import com.example.tarefas.ui.BaseFragment
 import com.example.tarefas.ui.FirebaseHelper
 import com.example.tarefas.util.initToolbar
 import com.example.tarefas.util.showBottomSheet
 
 
-class RegisterFragment : Fragment() {
+class RegisterFragment : BaseFragment() {
 
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
@@ -49,6 +49,9 @@ class RegisterFragment : Fragment() {
             if (password.isNotEmpty()) {
                 if (passwordRepeat.isNotEmpty()) {
                    if (password == passwordRepeat) {
+
+                       hideKeyBoard()
+
                        binding.progressBar.isVisible = true
 
                        registerUser(email, password)

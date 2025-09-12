@@ -1,7 +1,6 @@
 package com.example.tarefas.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +17,7 @@ import com.example.tarefas.util.initToolbar
 import com.example.tarefas.util.showBottomSheet
 
 
-class FormTaskFragment : Fragment() {
+class FormTaskFragment : BaseFragment() {
 
     private var _binding: FragmentFormTaskBinding? = null
     private val binding get() = _binding!!
@@ -92,6 +91,9 @@ class FormTaskFragment : Fragment() {
         val description = binding.editDescription.text.toString().trim()
         
         if (description.isNotEmpty()) {
+
+            hideKeyBoard()
+
             binding.progressBar.isVisible = true
 
             if (newTask) task = Task()

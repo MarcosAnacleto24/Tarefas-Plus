@@ -1,19 +1,19 @@
 package com.example.tarefas.ui.auth
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import com.example.tarefas.R
 import com.example.tarefas.databinding.FragmentRecoverAccountBinding
+import com.example.tarefas.ui.BaseFragment
 import com.example.tarefas.ui.FirebaseHelper
 import com.example.tarefas.util.initToolbar
 import com.example.tarefas.util.showBottomSheet
 
 
-class RecoverAccountFragment : Fragment() {
+class RecoverAccountFragment : BaseFragment() {
 
     private var _binding: FragmentRecoverAccountBinding? = null
     private val binding get() = _binding!!
@@ -43,6 +43,8 @@ class RecoverAccountFragment : Fragment() {
         val email = binding.edtEmail.text.toString().trim()
 
         if (email.isNotEmpty()) {
+
+            hideKeyBoard()
 
             binding.progressBar.isVisible = true
             recoverAccountUser(email)
