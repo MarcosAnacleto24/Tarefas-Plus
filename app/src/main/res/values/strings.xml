@@ -73,5 +73,7 @@
     <string name="item_task_delete">Remover</string>
     <string name="item_task_edit">Editar</string>
     <string name="item_task_Details">Detalhes</string>
+    <string name="item_icon_back">back</string>
+    <string name="item_icon_next">next</string>
 
 </resources>
