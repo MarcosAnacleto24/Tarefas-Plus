@@ -87,7 +87,7 @@
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        tools:text="@string/txt_get_information"
+                        tools:text="@string/txt_get_information_todo"
                         />
                 </LinearLayout>
 
