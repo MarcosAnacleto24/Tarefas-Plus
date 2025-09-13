@@ -2,9 +2,7 @@ package com.example.tarefas.ui.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
@@ -24,8 +22,9 @@ class TaskAdapter(
         val SELECT_BACK: Int = 1
         val SELECT_REMOVER: Int = 2
         val SELECT_EDIT: Int = 3
-        val SELECT_DETAILS: Int = 4
+        val SELECT_INFORMATION: Int = 4
         val SELECT_NEXT: Int = 5
+
 
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Task>() {
             override fun areItemsTheSame(
@@ -61,7 +60,7 @@ class TaskAdapter(
 
         holder.binding.btnDelete.setOnClickListener { taskSelector(task, SELECT_REMOVER) }
         holder.binding.btnEdit.setOnClickListener { taskSelector(task,SELECT_EDIT) }
-        holder.binding.btnDetails.setOnClickListener { taskSelector(task,SELECT_DETAILS) }
+        holder.binding.btnDetails.setOnClickListener { taskSelector(task,SELECT_INFORMATION) }
     }
 
     private fun setIndicators(task: Task, holder: MyViewHolder) {

@@ -52,6 +52,7 @@ class FormTaskFragment : BaseFragment() {
                 this.task = it
 
                 binding.editDescription.setText(task.description)
+                binding.editDetails.setText(task.details)
                 binding.titleToolbar.setText(R.string.edit_task)
 
                 val id = when(task.status) {
@@ -89,6 +90,7 @@ class FormTaskFragment : BaseFragment() {
 
     private fun validateData() {
         val description = binding.editDescription.text.toString().trim()
+        val details = binding.editDetails.text.toString().trim()
         
         if (description.isNotEmpty()) {
 
@@ -98,6 +100,7 @@ class FormTaskFragment : BaseFragment() {
 
             if (newTask) task = Task()
             task.description = description
+            task.details = details
             task.status = status
             saveTask()
         } else {

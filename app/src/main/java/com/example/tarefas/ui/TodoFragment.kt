@@ -114,8 +114,10 @@ class TodoFragment : Fragment() {
                 findNavController().navigate(action)
             }
 
-            TaskAdapter.SELECT_DETAILS -> {
-                Toast.makeText(requireContext(), "Detalhes ${task.description}", Toast.LENGTH_SHORT).show()
+            TaskAdapter.SELECT_INFORMATION -> {
+                val action = HomeFragmentDirections
+                    .actionHomeFragmentToInformationFragment(task)
+                findNavController().navigate(action)
             }
 
             TaskAdapter.SELECT_NEXT -> {

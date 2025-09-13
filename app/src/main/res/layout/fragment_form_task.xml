@@ -60,8 +60,27 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 style="@style/EditTextTheme"
-                android:hint="@string/hint_description"
-                android:inputType="textEmailAddress"/>
+                android:inputType="text"
+                android:hint="@string/hint_description"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:text="@string/details_form_task"
+                android:textColor="@color/white"/>
+
+            <EditText
+                android:id="@+id/editDetails"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:gravity="top"
+                android:layout_marginTop="4dp"
+                android:scrollbars="vertical"
+                android:padding="8dp"
+                style="@style/EditTextTheme"
+                android:hint="@string/hint_title_details_form_task"
+                android:inputType="textMultiLine"/>
 
             <TextView
                 android:layout_width="wrap_content"

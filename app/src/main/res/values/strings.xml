@@ -5,7 +5,7 @@
     <string name="status_task_todo">A Fazer</string>
     <string name="status_task_doing">Fazendo</string>
     <string name="status_task_done">Feitas</string>
-    
+
     <!--   Generic-->
     <string name="txt_title_warning">Atenção</string>
     <string name="btn_title_warning">Entendi</string>
@@ -64,6 +64,18 @@
     <string name="error_save">Erro! tente novamente mais tarde</string>
     <string name="edit_task">Editando tarefa</string>
     <string name="update_task">Tarefa atualizada com sucesso</string>
+    <string name="details_form_task">Detalhes</string>
+    <string name="hint_title_details_form_task">Adicione aqui os detalhes da sua tarefa</string>
+
+
+    <!-- InformationFragment -->
+    <string name="title_information">Informações da Tarefa</string>
+    <string name="txt_description_information">Descrições</string>
+    <string name="txt_get_information_todo">Status: A Fazer</string>
+    <string name="txt_get_information_doing">Status: Fazendo</string>
+    <string name="txt_get_information_done">Status: Feita</string>
+    <string name="txt_get_description_information">Descrição da tarefa: %s</string>
+    <string name="txt_details_information">Nenhum detalhe registrado</string>
 
     <!--    Bottom Sheet-->
     <string name="bottom_sheet_message">Mensagem</string>
@@ -72,8 +84,10 @@
     <string name="item_title_task_description">Criar Layout de Login</string>
     <string name="item_task_delete">Remover</string>
     <string name="item_task_edit">Editar</string>
-    <string name="item_task_Details">Detalhes</string>
+    <string name="item_task_information">Informações</string>
     <string name="item_icon_back">back</string>
     <string name="item_icon_next">next</string>
+
+
 
 </resources>
