@@ -75,7 +75,10 @@ class FormTaskFragment : BaseFragment() {
     }
     
     private fun initListeners() {
-        binding.btnSave.setOnClickListener { 
+        binding.btnSave.setOnClickListener {
+
+            observeViewModel()
+
             validateData()
         }
 
@@ -102,34 +105,23 @@ class FormTaskFragment : BaseFragment() {
             task.description = description
             task.details = details
             task.status = status
-            saveTask()
+
+            if (newTask) {
+                viewModel.insertTask(task)
+            } else {
+                //
+            }
         } else {
             showBottomSheet(message = getString(R.string.txt_description))
         }
     }
 
-    private fun saveTask() {
-        FirebaseHelper.getDatabase()
-            .child("tasks")
-            .child(FirebaseHelper.getIdUser())
-            .child(task.id)
-            .setValue(task).addOnCompleteListener { result ->
-                if (result.isSuccessful) {
-                    Toast.makeText(requireContext(), R.string.save_success, Toast.LENGTH_SHORT).show()
+    private fun observeViewModel() {
+        viewModel.taskInsert.observe(viewLifecycleOwner) {
+            Toast.makeText(requireContext(), R.string.save_success, Toast.LENGTH_SHORT).show()
+        }
 
-                    if (newTask) { //Criando nova Tarefa
-                        findNavController().popBackStack()
-                    } else { // Editando tarefa
-                        viewModel.setUpdateTask(task)
-
-                        binding.progressBar.isVisible = false
-                    }
-
-                } else {
-                    binding.progressBar.isVisible = false
-                    showBottomSheet(message = getString(R.string.error_save))
-                }
-            }
+        findNavController().popBackStack()
     }
 
     override fun onDestroyView() {
