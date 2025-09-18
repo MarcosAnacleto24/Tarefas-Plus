@@ -2,7 +2,7 @@
 
 Este é um aplicativo de lista de tarefas, desenvolvido em **Kotlin** para a plataforma **Android**. Ele foi criado com o objetivo de demonstrar minhas habilidades em desenvolvimento mobile e meu conhecimento sobre os conceitos fundamentais da plataforma.
 
-[![App Tarefas+](https://img.youtube.com/vi/vkSAYfyNHgI/hqdefault.jpg)](https://youtube.com/shorts/vkSAYfyNHgI?si=T5HLC-ne6Rpicqi4)
+[![App Tarefas-plus](https://img.youtube.com/vi/vkSAYfyNHgI/hqdefault.jpg)](https://youtube.com/shorts/vkSAYfyNHgI?si=T5HLC-ne6Rpicqi4)
 
 O aplicativo utiliza o **Firebase** para gerenciamento de dados, permitindo que os usuários autentiquem (façam login e registro) e armazenem suas tarefas de forma segura.
 
