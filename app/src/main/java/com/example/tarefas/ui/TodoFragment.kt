@@ -46,8 +46,12 @@ class TodoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initListeners()
+
         initRecyclerView()
-        getTasks()
+
+        observeViewModel()
+
+        viewModel.getTasks(Status.TODO)
     }
 
     private fun initListeners() {
@@ -57,10 +61,15 @@ class TodoFragment : Fragment() {
             findNavController().navigate(action)
         }
 
-        observeViewModel()
     }
 
     private fun observeViewModel() {
+
+        viewModel.taskList.observe(viewLifecycleOwner) { taskList ->
+            listEmpty(taskList)
+
+            taskAdapter.submitList(taskList)
+        }
 
         viewModel.taskInsert.observe(viewLifecycleOwner) {task ->
             if (task.status == Status.TODO) {
@@ -146,36 +155,6 @@ class TodoFragment : Fragment() {
             }
 
         }
-    }
-
-    private fun getTasks() {
-        FirebaseHelper.getDatabase()
-            .child("tasks")
-            .child(FirebaseHelper.getIdUser())
-            .addListenerForSingleValueEvent(object : ValueEventListener{
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    val taskList = mutableListOf<Task>()
-                    for (ds in snapshot.children) {
-                        val task = ds.getValue(Task::class.java) as Task
-
-                        if (task.status == Status.TODO) {
-                            taskList.add(task)
-                        }
-
-                    }
-
-                    listEmpty(taskList)
-
-                    taskList.reverse()
-                    taskAdapter.submitList(taskList)
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                    Log.i("INFO_TEST", "onCancelled: R.string.error_save")
-                }
-            })
-
-
     }
 
     private fun setPositionRecycleView() {

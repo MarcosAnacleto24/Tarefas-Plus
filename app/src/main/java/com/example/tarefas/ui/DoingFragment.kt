@@ -51,6 +51,7 @@ class DoingFragment : Fragment() {
     }
 
     private fun observeViewModel() {
+
         viewModel.taskUpdate.observe(viewLifecycleOwner) {updateTask ->
             if (updateTask.status == Status.DOING) {
 
