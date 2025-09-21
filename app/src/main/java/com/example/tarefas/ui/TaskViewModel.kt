@@ -2,9 +2,11 @@ package com.example.tarefas.ui
 
 
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.tarefas.R
 import com.example.tarefas.data.model.Status
 import com.example.tarefas.data.model.Task
 import com.google.firebase.database.DataSnapshot
@@ -22,10 +24,6 @@ class TaskViewModel : ViewModel() {
 
     private val _taskUpdate = MutableLiveData<Task>()
     val taskUpdate:  LiveData<Task> = _taskUpdate
-
-    fun setUpdateTask(task: Task) {
-        _taskUpdate.postValue(task)
-    }
 
     fun getTasks(status: Status) {
         FirebaseHelper.getDatabase()
@@ -67,5 +65,26 @@ class TaskViewModel : ViewModel() {
                     _taskInsert.postValue(task)
                 }
             }
+    }
+
+    fun updateTask(task: Task) {
+
+        val map = mapOf(
+            "description" to task.description,
+            "details" to task.details,
+            "status" to task.status,
+        )
+
+        FirebaseHelper.getDatabase()
+            .child("tasks")
+            .child(FirebaseHelper.getIdUser())
+            .child(task.id)
+            .updateChildren(map).addOnCompleteListener { result ->
+                if (result.isSuccessful) {
+                    _taskUpdate.postValue(task)
+                }
+            }
+
+
     }
 }

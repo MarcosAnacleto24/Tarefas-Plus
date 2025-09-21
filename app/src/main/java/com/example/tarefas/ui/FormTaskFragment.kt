@@ -109,7 +109,7 @@ class FormTaskFragment : BaseFragment() {
             if (newTask) {
                 viewModel.insertTask(task)
             } else {
-                //
+                viewModel.updateTask(task)
             }
         } else {
             showBottomSheet(message = getString(R.string.txt_description))
@@ -119,10 +119,18 @@ class FormTaskFragment : BaseFragment() {
     private fun observeViewModel() {
         viewModel.taskInsert.observe(viewLifecycleOwner) {
             Toast.makeText(requireContext(), R.string.save_success, Toast.LENGTH_SHORT).show()
+
+            findNavController().popBackStack()
         }
 
-        findNavController().popBackStack()
+        viewModel.taskUpdate.observe(viewLifecycleOwner) {
+            Toast.makeText(requireContext(), R.string.update_task, Toast.LENGTH_SHORT).show()
+
+            binding.progressBar.isVisible = false
+        }
     }
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()
