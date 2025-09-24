@@ -17,6 +17,7 @@ import com.example.tarefas.data.model.Status
 import com.example.tarefas.data.model.Task
 import com.example.tarefas.databinding.FragmentTodoBinding
 import com.example.tarefas.ui.adapter.TaskAdapter
+import com.example.tarefas.util.StateView
 import com.example.tarefas.util.showBottomSheet
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -65,62 +66,128 @@ class TodoFragment : Fragment() {
 
     private fun observeViewModel() {
 
-        viewModel.taskList.observe(viewLifecycleOwner) { taskList ->
-            listEmpty(taskList)
-
-            taskAdapter.submitList(taskList)
-        }
-
-        viewModel.taskInsert.observe(viewLifecycleOwner) {task ->
-            if (task.status == Status.TODO) {
-
-                //Armazena a lista atual do adapter
-                val oldList = taskAdapter.currentList
-
-                //Gera uma nova lista a partir da lista antiga já com a tarefa atualizada
-                val newList = oldList.toMutableList().apply {
-                    add(0,task)
+        viewModel.taskList.observe(viewLifecycleOwner) { stateView ->
+            when(stateView) {
+                is StateView.OnLoading -> {
+                    binding.progressBar.isVisible = true
                 }
 
-                //Envia a lista atualizada para o adapter
-                taskAdapter.submitList(newList)
+                is StateView.OnSuccess -> {
+                    binding.progressBar.isVisible = false
 
-                setPositionRecycleView()
+                    listEmpty(stateView.data ?: emptyList())
+
+                    taskAdapter.submitList(stateView.data)
+                }
+
+                is StateView.OnError -> {
+                    Toast.makeText(requireContext(), stateView.message, Toast.LENGTH_SHORT).show()
+                    binding.progressBar.isVisible = false
+                }
             }
         }
 
-        viewModel.taskUpdate.observe(viewLifecycleOwner) {updateTask ->
-            //Armazena a lista atual do adapter
-            val oldList = taskAdapter.currentList
+        viewModel.taskInsert.observe(viewLifecycleOwner) {stateView ->
 
-            //Gera uma nova lista a partir da lista antiga já com a tarefa atualizada
-            val newList = oldList.toMutableList().apply {
-                if (updateTask.status == Status.TODO) {
-                    find { it.id == updateTask.id }?.description = updateTask.description
-                } else {
-                    remove(updateTask)
+            when(stateView) {
+                is StateView.OnLoading -> {
+                    binding.progressBar.isVisible = true
+                }
+
+                is StateView.OnSuccess -> {
+                    binding.progressBar.isVisible = false
+
+                    if (stateView.data?.status == Status.TODO) {
+
+                        //Armazena a lista atual do adapter
+                        val oldList = taskAdapter.currentList
+
+                        //Gera uma nova lista a partir da lista antiga já com a tarefa atualizada
+                        val newList = oldList.toMutableList().apply {
+                            add(0,stateView.data)
+                        }
+
+                        //Envia a lista atualizada para o adapter
+                        taskAdapter.submitList(newList)
+
+                        setPositionRecycleView()
+                    }
+                }
+
+                is StateView.OnError -> {
+                    Toast.makeText(requireContext(), stateView.message, Toast.LENGTH_SHORT).show()
+                    binding.progressBar.isVisible = false
                 }
             }
 
-            //Armazena a posição da tarefa a ser atualizada na lista
-            val position = newList.indexOfFirst { it.id == updateTask.id }
-
-            //Envia a lista atualizada para o adapter
-            taskAdapter.submitList(newList)
-
-            //atualiza a tarefa pela posição do adapter
-            taskAdapter.notifyItemChanged(position)
         }
 
-        viewModel.taskDelete.observe(viewLifecycleOwner) {task ->
-            Toast.makeText(requireContext(), R.string.task_delete_success, Toast.LENGTH_SHORT).show()
+        viewModel.taskUpdate.observe(viewLifecycleOwner) {stateView ->
 
-            val oldList = taskAdapter.currentList
-            val newList = oldList.toMutableList().apply {
-                remove(task)
+            when(stateView) {
+                is StateView.OnLoading -> {
+                    binding.progressBar.isVisible = true
+                }
+
+                is StateView.OnSuccess -> {
+                    binding.progressBar.isVisible = false
+
+                    //Armazena a lista atual do adapter
+                    val oldList = taskAdapter.currentList
+
+                    //Gera uma nova lista a partir da lista antiga já com a tarefa atualizada
+                    val newList = oldList.toMutableList().apply {
+                        if (stateView.data?.status == Status.TODO) {
+                            find { it.id == stateView.data.id }?.description = stateView.data.description
+                        } else {
+                            remove(stateView.data)
+                        }
+                    }
+
+                    //Armazena a posição da tarefa a ser atualizada na lista
+                    val position = newList.indexOfFirst { it.id == stateView.data?.id }
+
+                    //Envia a lista atualizada para o adapter
+                    taskAdapter.submitList(newList)
+
+                    //atualiza a tarefa pela posição do adapter
+                    taskAdapter.notifyItemChanged(position)
+                }
+
+                is StateView.OnError -> {
+                    Toast.makeText(requireContext(), stateView.message, Toast.LENGTH_SHORT).show()
+                    binding.progressBar.isVisible = false
+                }
             }
 
-            taskAdapter.submitList(newList)
+        }
+
+        viewModel.taskDelete.observe(viewLifecycleOwner) {stateView ->
+
+            when(stateView) {
+                is StateView.OnLoading -> {
+                    binding.progressBar.isVisible = true
+                }
+
+                is StateView.OnSuccess -> {
+                    binding.progressBar.isVisible = false
+
+                    Toast.makeText(requireContext(), R.string.task_delete_success, Toast.LENGTH_SHORT).show()
+
+                    val oldList = taskAdapter.currentList
+                    val newList = oldList.toMutableList().apply {
+                        remove(stateView.data)
+                    }
+
+                    taskAdapter.submitList(newList)
+                }
+
+                is StateView.OnError -> {
+                    Toast.makeText(requireContext(), stateView.message, Toast.LENGTH_SHORT).show()
+                    binding.progressBar.isVisible = false
+                }
+            }
+
         }
     }
 
