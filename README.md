@@ -18,7 +18,7 @@ O aplicativo utiliza o **Firebase** para gerenciamento de dados, permitindo que 
 * **Navegação e Layout Dinâmico:** A navegação entre as telas é gerenciada de forma eficiente utilizando o **Navigation Component** e o **Safe Args**. A visualização das tarefas é feita em um **ViewPager**, com rolagem horizontal entre as categorias ("todo", "doing", "done").
 
 ### 🛠️ Tecnologias Utilizadas
-
+* **Arquitetura:** MVVM
 * **Linguagem de Programação:** Kotlin
 * **Plataforma:** Android
 * **Interface de Usuário:** XML
@@ -35,8 +35,6 @@ O aplicativo utiliza o **Firebase** para gerenciamento de dados, permitindo que 
 ### 🚀 Aprendizados e Futuros Desafios
 
 Durante o desenvolvimento deste projeto, aprofundei meu conhecimento em navegação, persistência de dados e na utilização de ferramentas como o **ViewBinding** e o **RecyclerView**, que me permitiram escrever um código mais limpo e eficiente. O desafio de implementar o **ViewPager** para separar as tarefas por categoria foi uma excelente oportunidade para aplicar conceitos de navegação e gerenciamento de estados.
-
-Para este projeto, comecei a explorar o padrão **ViewModel**, que ainda será abordado em detalhes no meu curso. Eu o implementei no código para me familiarizar com sua estrutura e me preparar para aprender sobre arquitetura MVVM no futuro. Este projeto representa meu compromisso com o aprendizado contínuo e minha curiosidade por novas tecnologias.
 
 ---
 
