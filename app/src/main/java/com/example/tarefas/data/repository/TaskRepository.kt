@@ -2,10 +2,7 @@ package com.example.tarefas.data.repository
 
 import com.example.tarefas.data.model.Task
 import com.example.tarefas.ui.FirebaseHelper
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ServerValue
-import com.google.firebase.database.ValueEventListener
 
 class TaskRepository {
 
