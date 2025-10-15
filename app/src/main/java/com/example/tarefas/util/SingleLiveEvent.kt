@@ -14,9 +14,9 @@ class SingleLiveEvent<T> : MutableLiveData<T>() {
     // Usamos AtomicBoolean para garantir que as operações sejam seguras entre múltiplas threads (thread-safe).
     private val pending = AtomicBoolean(false)
 
-    /**
-     * Sobrescrevemos o método observe para controlar quando o observador deve ser notificado.
-     */
+
+     // Sobrescrevemos o metodo observe para controlar quando o observador deve ser notificado.
+
     @MainThread
     override fun observe(owner: LifecycleOwner, observer: Observer<in T>) {
         if (hasActiveObservers()) {

@@ -1,6 +1,5 @@
 package com.example.tarefas.util
 
-import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
