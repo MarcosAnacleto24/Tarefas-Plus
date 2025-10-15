@@ -13,9 +13,9 @@ import com.example.tarefas.R
 import com.example.tarefas.data.model.Status
 import com.example.tarefas.data.model.Task
 import com.example.tarefas.databinding.FragmentFormTaskBinding
+import com.example.tarefas.util.StateView
 import com.example.tarefas.util.initToolbar
 import com.example.tarefas.util.showBottomSheet
-
 
 class FormTaskFragment : BaseFragment() {
 
@@ -26,14 +26,14 @@ class FormTaskFragment : BaseFragment() {
 
     private val args: FormTaskFragmentArgs by navArgs()
 
-    private val viewModel: TaskViewModel by activityViewModels ()
+    private val viewModel: TaskViewModel by activityViewModels()
     private var status: Status = Status.TODO
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
        _binding = FragmentFormTaskBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -44,10 +44,11 @@ class FormTaskFragment : BaseFragment() {
         initToolbar(binding.toolbar)
         getArgsConfigure()
         initListeners()
+        observeViewModel()
     }
 
     private fun getArgsConfigure() {
-        args.task.let { it ->
+        args.task.let { 
             if (it != null) {
                 this.task = it
 
@@ -65,28 +66,20 @@ class FormTaskFragment : BaseFragment() {
 
                 newTask = false
                 status = task.status
-
             }
-
-
         }
-
-
     }
     
     private fun initListeners() {
         binding.btnSave.setOnClickListener {
-
-            observeViewModel()
-
             validateData()
         }
 
         binding.rbStatus.setOnCheckedChangeListener { _, id ->
-            when(id) {
-                R.id.rbTodo -> status = Status.TODO
-                R.id.rbDoing -> status = Status.DOING
-                else -> status = Status.DONE
+            status = when(id) {
+                R.id.rbTodo -> Status.TODO
+                R.id.rbDoing -> Status.DOING
+                else -> Status.DONE
             }
         }
     }
@@ -96,10 +89,7 @@ class FormTaskFragment : BaseFragment() {
         val details = binding.editDetails.text.toString().trim()
         
         if (description.isNotEmpty()) {
-
             hideKeyBoard()
-
-            binding.progressBar.isVisible = true
 
             if (newTask) task = Task()
             task.description = description
@@ -117,25 +107,41 @@ class FormTaskFragment : BaseFragment() {
     }
 
     private fun observeViewModel() {
-        viewModel.taskInsert.observe(viewLifecycleOwner) {
-            Toast.makeText(requireContext(), R.string.save_success, Toast.LENGTH_SHORT).show()
-
-            findNavController().popBackStack()
+        viewModel.taskInsert.observe(viewLifecycleOwner) { stateView ->
+            when (stateView) {
+                is StateView.OnLoading -> {
+                    binding.progressBar.isVisible = true
+                }
+                is StateView.OnSuccess -> {
+                    Toast.makeText(requireContext(), R.string.save_success, Toast.LENGTH_SHORT).show()
+                    findNavController().popBackStack()
+                }
+                is StateView.OnError -> {
+                    binding.progressBar.isVisible = false
+                    Toast.makeText(requireContext(), stateView.message, Toast.LENGTH_SHORT).show()
+                }
+            }
         }
 
-        viewModel.taskUpdate.observe(viewLifecycleOwner) {
-            Toast.makeText(requireContext(), R.string.update_task, Toast.LENGTH_SHORT).show()
-
-            binding.progressBar.isVisible = false
+        viewModel.taskUpdate.observe(viewLifecycleOwner) { stateView ->
+            when (stateView) {
+                is StateView.OnLoading -> {
+                    binding.progressBar.isVisible = true
+                }
+                is StateView.OnSuccess -> {
+                    Toast.makeText(requireContext(), R.string.update_task, Toast.LENGTH_SHORT).show()
+                    findNavController().popBackStack()
+                }
+                is StateView.OnError -> {
+                    binding.progressBar.isVisible = false
+                    Toast.makeText(requireContext(), stateView.message, Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
-
-
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
-
 }

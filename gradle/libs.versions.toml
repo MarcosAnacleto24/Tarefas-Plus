@@ -1,6 +1,6 @@
 [versions]
 # Versões do meu projeto
-agp = "8.12.3"
+agp = "8.13.0"
 coreSplashscreen = "1.0.1"
 firebaseAuthKtx = "23.2.1"
 kotlin = "2.2.20"
