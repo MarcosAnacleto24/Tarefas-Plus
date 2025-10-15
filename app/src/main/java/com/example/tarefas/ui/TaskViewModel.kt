@@ -1,5 +1,6 @@
 package com.example.tarefas.ui
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -23,9 +24,6 @@ class TaskViewModel : ViewModel() {
 
     private val _taskUpdate = SingleLiveEvent<StateView<Task>>()
     val taskUpdate: LiveData<StateView<Task>> = _taskUpdate
-
-    private val _taskDelete = SingleLiveEvent<StateView<Task>>()
-    val taskDelete: LiveData<StateView<Task>> = _taskDelete
 
     private val database = FirebaseHelper.getDatabase()
         .child("tasks")
@@ -81,16 +79,18 @@ class TaskViewModel : ViewModel() {
         // Esta função apenas move a tarefa e não dispara um evento de UI (SingleLiveEvent)
         repository.moveTask(task) { result ->
             // Tratamento de erro pode ser adicionado aqui se necessário (ex: log)
+            result.onFailure {
+                Log.e("TaskViewModel", "Erro ao mover tarefa", it)
+            }
         }
     }
 
     fun deleteTask(task: Task) {
+        // Apenas pede ao repositório para deletar. O sucesso é refletido pelo valueEventListener.
         repository.deleteTask(task) { result ->
-            result.onSuccess { deletedTask ->
-                _taskDelete.postValue(StateView.OnSuccess(deletedTask))
-            }
-            result.onFailure { exception ->
-                _taskDelete.postValue(StateView.OnError(exception.message.toString()))
+            // O erro pode ser logado aqui para depuração, se necessário.
+            result.onFailure {
+                Log.e("TaskViewModel", "Erro ao deletar tarefa", it)
             }
         }
     }
